@@ -99,11 +99,17 @@ require 'options'
 -- [[ Basic Keymaps ]]
 require 'keymaps'
 
--- [[ Install `lazy.nvim` plugin manager ]]
-require 'lazy-bootstrap'
+if vim.g.vscode then
+  vim.cmd [[source $HOME/.config/nvim/vscode/settings.vim]]
+  -- Optional plugin
+  --vim.cmd [[source $HOME/.config/nvim/vscode/easymotion-config.vim]]
+else
+  -- [[ Install `lazy.nvim` plugin manager ]]
+  require 'lazy-bootstrap'
 
--- [[ Configure and install plugins ]]
-require 'lazy-plugins'
+  -- [[ Configure and install plugins ]]
+  require 'lazy-plugins'
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

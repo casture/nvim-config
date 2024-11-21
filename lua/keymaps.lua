@@ -1,11 +1,14 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
--- Clear highlights on search when pressing <Esc> in normal mode
---  See `:help hlsearch`
+-- Set highlight on search, but clear on pressing <Esc> in normal mode
+vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -44,5 +47,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+vim.keymap.set('i', 'jk', '<ESC>', { desc = 'Exit Insert mode' })
+vim.keymap.set('n', '<leader>Q', ':qa<CR>', { desc = '[Q]uit all buffers' })
+vim.keymap.set('n', '<leader>q', ':q<CR>', { desc = '[Q]uit buffer' })
+vim.keymap.set('n', '<leader>c', ':bd<CR>', { desc = '[C]lose buffer (bd)' })
+vim.keymap.set('n', '<leader>w', ':w<CR>', { desc = '[W]rite buffer' })
+
+vim.keymap.set('n', '<leader>j', '10j', { desc = 'Move down 10 lines' })
+vim.keymap.set('n', '<leader>k', '10k', { desc = 'Move up 10 lines' })
+
+vim.keymap.set('n', 'gv', ':vsplit<CR>gd')
 
 -- vim: ts=2 sts=2 sw=2 et
